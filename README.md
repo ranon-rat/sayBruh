@@ -1,7 +1,7 @@
 <h1 align="center"> sayBruh</h1>
 
 <h4 align="center">Is a recreation of saycheese with golang because saycheese use php and use old technologies
-Even if you are interested in supporting the original project, here it is <a href="https://github.com/hangetzzu/saycheese">saycheese</a></h4>
+Even if you are interested in supporting the original project, here it is <a href="https://github.com/hangetzzu/saycheese">saycheese</a>, if you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">discord</a></h4>
 <h1 align= "center">
 install ngrok for use this 
 </h1>
