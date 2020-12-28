@@ -114,7 +114,7 @@ func sayNgrok() {
 	if err != nil && cono < 10 {
 		// this is shit
 		fmt.Println("shit")
-		panic(err)
+		sayNgrok()
 	}
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
