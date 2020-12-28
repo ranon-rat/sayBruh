@@ -146,9 +146,10 @@ func main() {
 	}()
 	go func() {
 		// ejecuta el comando para ejecutar ngrok
+		fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok`")
 		if err := exec.Command("./ngrok", "http", "8080").Run(); err != nil {
 			if err := exec.Command("ngrok", "http", "8080").Run(); err != nil {
-				fmt.Println("\033[31minstall ngrok for use this\033[0m")
+				//fmt.Println("\033[31minstall ngrok for use this\033[0m")
 			}
 		}
 	}()
