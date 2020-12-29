@@ -41,7 +41,7 @@ src $go run main.go
 ```
 
 3-.Despues de eso debes de mandar el link que te genera ngrok
-<h1 align="center"> Contacto</a>
+<h1 align="center"> Contacto</h1>
 <p align="center">
 si tienes alguna pregunta contactanos en <a href="https://discord.gg/DPYXzgZQhN">discord</a>
  </p>
