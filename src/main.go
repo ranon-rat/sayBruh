@@ -108,7 +108,7 @@ func writeIP(w http.ResponseWriter, r *http.Request) {
 }
 func sayNgrok() {
 	// wait a second
-	time.Sleep(time.Millisecond * 1000) // make the petition
+	time.Sleep(time.Millisecond * 1700) // make the petition
 
 	res, err := http.Get("http://127.0.0.1:4040/api/tunnels")
 	if err != nil && cono < 10 {
