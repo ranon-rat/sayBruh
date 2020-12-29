@@ -15,9 +15,13 @@ use it at your own risk</h3>
 
 1-.You need to install ngrok in the directory `src`
 
-2-. Then you need to run the command
+2-. Then you need to run this command if you install src.zip
 ```
-src $go run main.go
+src $./main
+```
+if you doesnt install `src.zip` you need to run this other command
+```
+src $ go run main.go
 ```
 
 3-.After that you need to send the link generated
@@ -37,9 +41,13 @@ If you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">d
 
 1-.Necesitas instalar ngrok en el directorio `src`
 
-2-. despues necesitas correr este comando
+2-. despues necesitas correr este comando si te instalaste `src.zip` 
 ```
 src $./main
+```
+si no te instalaste `src.zip` debes de correr este otro comando
+```
+src $go run main.go
 ```
 
 3-.Despues de eso debes de mandar el link que te genera ngrok
