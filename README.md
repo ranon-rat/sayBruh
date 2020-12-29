@@ -8,9 +8,9 @@ Even if you are interested in supporting the original project, here it is <a hre
 
 <h1 align="center">how to use it </h1>
 
-1-.you need to install ngrok in the directorie `src`
+1-.You need to install ngrok in the directory `src`
 
-2-. then you need to run the command:
+2-. Then you need to run the command:
 ```bash
 src$go run main.go
                                                                    GGGGGGGG          
