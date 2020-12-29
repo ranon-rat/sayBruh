@@ -13,9 +13,11 @@ use it at your own risk</h3>
 
 <h1 align="center">how to use it </h1>
 if you install `src.zip` you only need to run this command
+
 ```
 src $./main
 ```
+
 1-.You need to install ngrok in the directory `src`
 
 2-. Then you need to run this command 
