@@ -18,6 +18,8 @@ if you install `src.zip` you only need to run this command
 src $./main
 ```
 
+if you doesnt install `src.zip` you need to do this:
+
 1-.You need to install ngrok in the directory `src`
 
 2-. Then you need to run this command 
