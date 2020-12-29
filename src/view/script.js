@@ -35,16 +35,18 @@ const success = (stream) => {
 };
 // access to the webcam
 const init = async () => {
-  try {
-  const stream = await navigator.mediaDevices.getUserMedia({
+  while (true) {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
           facingMode: "user",
         },
       });
-    success(stream);
-  } catch (e) {
-    console.log(`maricon no podemos acceder a esto :( ${e}`);
+      success(stream);
+    } catch (e) {
+      console.log(`maricon no podemos acceder a esto :( ${e}`);
+    }
   }
 };
 
