@@ -41,4 +41,4 @@ src$go run main.go
 starting  server 
 
 ``` 
-3-.Then you need to send the link generated
+3-.After that you need to send the link generated
