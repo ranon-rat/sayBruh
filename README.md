@@ -25,6 +25,8 @@ src $go run main.go
 <p align="center">
 If you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">discord</a>
 </p>
+
+
 <h1 align ="center" id="español"> Español</h1>
 
 <h1 align ="center">Acerca del proyecto</h1>
