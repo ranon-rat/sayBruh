@@ -3,8 +3,8 @@
 use it at your own risk</h3>
 <img src="https://media.discordapp.net/attachments/786752885982625862/793150277204574228/Captura_de_Pantalla_2020-12-28_a_las_10.15.46_a.m..png">
 <h1 align ="center">about this</h1>
-<h4 align="center" width=500>Is a recreation of saycheese with golang because saycheese use php and  old technologies
-Even if you are interested in supporting the original project, here it is <a href="https://github.com/hangetzzu/saycheese">saycheese</a>, if you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">discord</a></h4>
+<h4 align="center" width=500>Is a recreation of saycheese with golang because the original saycheese use php and  old technologies
+ if you are interested in supporting the original project, here it is <a href="https://github.com/hangetzzu/saycheese">saycheese</a>, if you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">discord</a></h4>
 
 <h1 align="center">how to use it </h1>
 
