@@ -12,16 +12,15 @@ use it at your own risk</h3>
  if you are interested in supporting the original project, here it is <a href="https://github.com/hangetzzu/saycheese">saycheese</a></h4>
 
 <h1 align="center">how to use it </h1>
-
-1-.You need to install ngrok in the directory `src`
-
-2-. Then you need to run this command if you install src.zip
+if you install `src.zip` you only need to run this command
 ```
 src $./main
 ```
-if you doesnt install `src.zip` you need to run this other command
+1-.You need to install ngrok in the directory `src`
+
+2-. Then you need to run this command 
 ```
-src $ go run main.go
+src $go run main.go
 ```
 
 3-.After that you need to send the link generated
@@ -38,14 +37,14 @@ If you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">d
 <h4 align="center" >es una reconstruccion del saycheese con golang ya que el original <a href="https://github.com/hangetzzu/saycheese">saycheese</a> usaba php y tecnologias antiguas que ya estaban empezando a quedar obsoletas , pero si quieres apoyar al proyecto original aqui esta: <a href="https://github.com/hangetzzu/saycheese">saycheese</a></h4>
 
 <h1 align="center">¿Como usarlo? </h1>
-
-1-.Necesitas instalar ngrok en el directorio `src`
-
-2-. despues necesitas correr este comando si te instalaste `src.zip` 
+si te instalaste `src.zip` no hace falta que hagas todo esto, solo debes de ejecutar el siguiente comando
 ```
 src $./main
 ```
-si no te instalaste `src.zip` debes de correr este otro comando
+si no pues haz lo siguiente 
+1-.Necesitas instalar ngrok en el directorio `src`
+
+2-. despues solo necesitas correr el siguiente comando
 ```
 src $go run main.go
 ```
