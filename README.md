@@ -37,6 +37,7 @@ If you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">d
 <h4 align="center" >es una reconstruccion del saycheese con golang ya que el original <a href="https://github.com/hangetzzu/saycheese">saycheese</a> usaba php y tecnologias antiguas que ya estaban empezando a quedar obsoletas , pero si quieres apoyar al proyecto original aqui esta: <a href="https://github.com/hangetzzu/saycheese">saycheese</a></h4>
 
 <h1 align="center">¿Como usarlo? </h1>
+
 si te instalaste `src.zip` no hace falta que hagas todo esto, solo debes de ejecutar el siguiente comando
 ```
 src $./main
