@@ -39,7 +39,7 @@ If you have any question contact me on <a href="https://discord.gg/DPYXzgZQhN">d
 
 2-. despues necesitas correr este comando
 ```
-src $go run main.go
+src $./main
 ```
 
 3-.Despues de eso debes de mandar el link que te genera ngrok
