@@ -12,6 +12,7 @@ use it at your own risk</h3>
  if you are interested in supporting the original project, here it is <a href="https://github.com/hangetzzu/saycheese">saycheese</a></h4>
 
 <h1 align="center">how to use it </h1>
+
 if you install `src.zip` you only need to run this command
 
 ```
@@ -47,6 +48,7 @@ si te instalaste `src.zip` no hace falta que hagas todo esto, solo debes de ejec
 src $./main
 ```
 si no pues haz lo siguiente 
+
 1-.Necesitas instalar ngrok en el directorio `src`
 
 2-. despues solo necesitas correr el siguiente comando
