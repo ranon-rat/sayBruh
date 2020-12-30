@@ -18,7 +18,7 @@ import (
 
 var (
 	cono        int            = 0                                                   // this is for avoid problems
-	detectNgrok *regexp.Regexp = regexp.MustCompile("https?://+[a-z 0-9]+.ngrok.io") // this is the regex for get the url
+	detectNgrok *regexp.Regexp = regexp.MustCompile("https://+[a-z 0-9]+.ngrok.io") // this is the regex for get the url
 
 	logo string = "" +
 		"                                                              \033[36m     GGGGGGGG          \n" +
