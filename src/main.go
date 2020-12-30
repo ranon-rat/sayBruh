@@ -102,20 +102,23 @@ func writeIP(w http.ResponseWriter, r *http.Request) {
 	//join the data
 	output := strings.Join([]string{after, r.Header.Get("x-forwarded-for"), r.Header.Get("User-Agent")}, "\n")
 	log.Printf("%s visit your page", r.Header.Get("x-forwarded-for"))
-	err = ioutil.WriteFile("myfile", []byte(output), 0644)
+	err = ioutil.WriteFile("logs.txt", []byte(output), 0644)
 	// send the pages
 	http.ServeFile(w, r, "view"+r.URL.Path)
 }
 func sayNgrok() {
 	// wait a second
-	fmt.Println("wait a second")
+
 	time.Sleep(time.Millisecond * 1700) // make the petition
 
 	res, err := http.Get("http://127.0.0.1:4040/api/tunnels")
-	if err != nil && cono < 10 {
+	if err != nil && cono <= 10 {
 		// this is shit
-		fmt.Println("shit")
+		cono++
 		sayNgrok()
+	} else if cono > 10 {
+		fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok`")
+		return
 	}
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
