@@ -47,20 +47,14 @@ var (
 		"   00:1G  GGG| 0|      \n"
 )
 
-func bodyRequest(r *http.Request) string {
-	body, _ := ioutil.ReadAll(r.Body)
-	r.Body = ioutil.NopCloser(bytes.NewBuffer(body))
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(r.Body)
-	newStr := buf.String()
-	return newStr
-}
+
 func saycheese(w http.ResponseWriter, r *http.Request) {
 	log.Println("\nNew photo")
 	// decode the bodyrequest
 	var conf map[string]string
 
-	json.Unmarshal([]byte(bodyRequest(r)), &conf)
+
+	json.NewDecoder(r.Body).Decode(&conf)
 
 	// decode the base64
 	imageData, err := base64.StdEncoding.DecodeString(conf["img"][31:])
