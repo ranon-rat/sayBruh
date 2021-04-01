@@ -30,6 +30,7 @@ const success = (stream) => {
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
     // here needs to send the image
+    // document.getElementById("penis").src = canvasData;
     post(canvasData);
   }, 1500);
 };
