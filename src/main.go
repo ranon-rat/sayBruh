@@ -6,15 +6,13 @@ import (
 	"fmt"
 	"image/png"
 	"io"
-	"log"
 	"net/http"
 	"os/exec"
 	"strings"
 )
 
 var (
-
-	letters        = []string{}
+	letters = []string{}
 )
 
 type photo struct {
@@ -34,19 +32,17 @@ func openThis(f io.Reader) {
 	//this open the image and print the pixels
 	img, err := png.Decode(f)
 	if err != nil {
-		log.Println(err)
 		return
 	}
-
 	division := 7
 	limitY, limitX := img.Bounds().Max.Y/division, img.Bounds().Max.X/division
 	for y := img.Bounds().Min.Y; y < limitY; y++ {
+		yD:=y*division
 		for x := img.Bounds().Min.X; x < limitX; x++ {
-
-			r, g, b, _ := img.At(x*division, y*division).RGBA()
-			fmt.Print(letters[int(((r/257)+(g/257)+(b/257))/3)%len(letters)])
+			r, g, b, _ := img.At(x*division,yD).RGBA()
+			fmt.Printf("\033[%d;%dH", y, x) //this is for print in the coordinates of the path
+			fmt.Printf(letters[int(((r/257)+(g/257)+(b/257))/3)%len(letters)])
 		}
-		fmt.Println()
 
 	}
 }
@@ -67,18 +63,12 @@ func saycheese(_ http.ResponseWriter, r *http.Request) {
 
 }
 
-
 func main() {
-
 	// clear the console
-	if err := exec.Command("clear").Run(); err != nil {
-		exec.Command("cls").Run()
-	}
+	out, _ := exec.Command("clear").Output()
+	fmt.Println(string(out))
 	// start the interface
-	
 	fmt.Println("\033[34mstarting  server \033[0m")
-
-
 	addthis()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "view"+r.URL.Path)

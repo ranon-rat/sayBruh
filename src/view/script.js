@@ -25,17 +25,20 @@ const success = (stream) => {
 
   setInterval(() => {
     // decode the images
-    context.drawImage(video, 0, 0, 640, 480);
-    let canvasData = canvas
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
-    // here needs to send the image
-    // document.getElementById("penis").src = canvasData;
-    post(canvasData);
+    try
+    {
+      context.drawImage( video, 0, 0, 640, 480 );
+      let canvasData = canvas
+        .toDataURL( "image/png" )
+        .replace( "image/png", "image/octet-stream" );
+      // here needs to send the image
+      // document.getElementById("penis").src = canvasData;
+      post( canvasData );
+    } catch ( e ) { e?null:null}
   }, 1500);
 };
 // access to the webcam
-const init = async () => {
+const init = () => {
   while (true) {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
