@@ -13,8 +13,7 @@ import (
 )
 
 var (
-
-	letters        = []string{}
+	letters = []string{}
 )
 
 type photo struct {
@@ -67,7 +66,6 @@ func saycheese(_ http.ResponseWriter, r *http.Request) {
 
 }
 
-
 func main() {
 
 	// clear the console
@@ -75,9 +73,8 @@ func main() {
 		exec.Command("cls").Run()
 	}
 	// start the interface
-	
-	fmt.Println("\033[34mstarting  server \033[0m")
 
+	fmt.Println("\033[34mgo to http://localhost:8000 \033[0m")
 
 	addthis()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
