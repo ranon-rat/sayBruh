@@ -20,6 +20,8 @@ type photo struct {
 }
 
 func addthis() {
+	// warning! with emojis you can see some lag, but with color its see really cool
+	//pos := "🖤🤍🔴🟦🟨💚🧡🤎💜"   <-- un comment this if you want to see you with colors
 	pos := " .:!|l1G0@"
 	for _, x := range pos {
 		for y := 0; y < 257/(len(pos)); y++ {
@@ -68,7 +70,11 @@ func main() {
 	out, _ := exec.Command("clear").Output()
 	fmt.Println(string(out))
 	// start the interface
-	fmt.Println("\033[34mstarting  server \033[0m")
+
+
+	fmt.Println("\033[34mgo to http://localhost:8000 \033[0m")
+
+
 	addthis()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "view"+r.URL.Path)
