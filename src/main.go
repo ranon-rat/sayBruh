@@ -21,6 +21,8 @@ type photo struct {
 }
 
 func addthis() {
+	// warning! with emojis you can see some lag, but with color its see really cool
+	//pos := "🖤🤍🔴🟦🟨💚🧡🤎💜"   <-- un comment this if you want to see you with colors
 	pos := " .:!|l1G0@"
 	for _, x := range pos {
 		for y := 0; y < 257/(len(pos)); y++ {
