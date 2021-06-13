@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -108,9 +109,15 @@ func writeIP(w http.ResponseWriter, r *http.Request) {
 	after := string(fs)
 	//join the data
 	output := strings.Join([]string{after, r.Header.Get("x-forwarded-for"), r.Header.Get("User-Agent")}, "\n")
-	log.Printf("%s visit your page", r.Header.Get("x-forwarded-for"))
-	err = ioutil.WriteFile("logs.txt", []byte(output), 0644)
-	// send the pages
+	resp, _ := http.Get("http://ip-api.com/json/"+r.Header.Get("x-forwarded-for")) // here is just making the request to the ip-api to show where the ip is
+	outJson, _ := ioutil.ReadAll(resp.Body)
+	var out bytes.Buffer
+	json.Indent(&out, outJson, "", "\t")
+	coolIp := string(out.Bytes())
+	fmt.Println(coolIp)
+	log.Printf("%s visit your page:", r.Header.Get("x-forwarded-for"))
+	err = ioutil.WriteFile("logs.txt", []byte(output), 0644) // write the logs
+	// send the pagesi
 	http.ServeFile(w, r, "view"+r.URL.Path)
 }
 
@@ -132,7 +139,6 @@ func sayNgrok() {
 		sayNgrok()
 
 	} else if cono > 10 {
-		fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok`")
 		return
 	}
 	body, err := ioutil.ReadAll(res.Body)
@@ -144,7 +150,7 @@ func sayNgrok() {
 
 	// then send you  something like this  https://254ff7ccf60c.ngrok.io
 
-	fmt.Printf("\nsend \033[36m%s\n\n\033[0m", detectNgrok.FindString(string(body)))
+	fmt.Printf("\nsend: \033[36m%s\n\n\033[0m", detectNgrok.FindString(string(body)))
 }
 
 func main() {
@@ -167,7 +173,6 @@ func main() {
 			cmd = exec.Command("ngrok", "http", "8080")
 			if err := cmd.Run(); err != nil {
 				log.Println(err)
-				fmt.Println("I need ngrok!, if you don't have ngrok, try `sudo apt install ngrok` if you are on a distro based on debian")
 			}
 		}
 	}()
