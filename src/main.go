@@ -23,7 +23,7 @@ var (
 	// this is for the errors
 	cono int = 0
 	// this detect the ngrok url                                              // this is for avoid problems
-	detectNgrok = regexp.MustCompile(`(https:)([/|.|\w|\s|-])*\.(?:io)`) // this is the regex for get the url
+	detectNgrok = regexp.MustCompile(`http:[/.\w\s-]+\.io`) // this is the regex for get the url
 	// im using ansi colors for this so sometimes when someone is using something like windows it doesn't look good
 	logo string = "" +
 		"                                                              \033[36m     GGGGGGGG          \n" +
